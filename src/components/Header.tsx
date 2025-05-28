@@ -21,7 +21,8 @@ const Header = () => {
             </h1>
           </Link>
           
-          <div className="flex items-center space-x-4 flex-1 max-w-md mx-8">
+          {/* Search - Hidden on mobile */}
+          <div className="hidden md:flex items-center space-x-4 flex-1 max-w-md mx-8">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input 
@@ -38,22 +39,28 @@ const Header = () => {
                 size="sm"
               >
                 <Users className="h-4 w-4 mr-2" />
-                Users
+                <span className="hidden sm:inline">Users</span>
               </Button>
             </Link>
             
-            <Button variant="outline" size="sm" className="relative">
-              <ShoppingBag className="h-4 w-4 mr-2" />
-              Cart
-              {totalItems > 0 && (
-                <Badge 
-                  variant="destructive" 
-                  className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs"
-                >
-                  {totalItems}
-                </Badge>
-              )}
-            </Button>
+            <Link to="/cart">
+              <Button 
+                variant={location.pathname === '/cart' ? 'default' : 'outline'} 
+                size="sm" 
+                className="relative"
+              >
+                <ShoppingBag className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Cart</span>
+                {totalItems > 0 && (
+                  <Badge 
+                    variant="destructive" 
+                    className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs"
+                  >
+                    {totalItems}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

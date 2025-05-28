@@ -3,6 +3,7 @@ import { useProducts } from '@/hooks/useProducts';
 import ProductGrid from '@/components/ProductGrid';
 import ProductSkeletonGrid from '@/components/ProductSkeleton';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { RefreshCw, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -15,10 +16,10 @@ const Index = () => {
   console.log('Products error:', error);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col">
       <Header />
       
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 flex-1">
         {/* Hero Section */}
         <div className="text-center py-12 animate-fade-in">
           <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
@@ -81,6 +82,8 @@ const Index = () => {
           )}
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };
