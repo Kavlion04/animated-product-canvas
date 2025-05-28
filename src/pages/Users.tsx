@@ -2,13 +2,13 @@
 import React, { Suspense, lazy, useMemo } from 'react';
 import { useUsers } from '@/hooks/useUsers';
 import UserSkeletonGrid from '@/components/UserSkeleton';
+import Cart from '@/components/Cart';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { RefreshCw, AlertTriangle, Users as UsersIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-// Lazy load components
+// Lazy load components - removing Cart from lazy loading
 const UserGrid = lazy(() => import('@/components/UserGrid'));
-const Cart = lazy(() => import('@/components/Cart'));
 
 const Users = () => {
   const { data: users, isLoading, error, refetch } = useUsers();
@@ -90,20 +90,10 @@ const Users = () => {
             )}
           </div>
 
-          {/* Cart Section */}
+          {/* Cart Section - removed Suspense wrapper since Cart is no longer lazy loaded */}
           <div className="lg:w-80">
             <div className="sticky top-8">
-              <Suspense fallback={
-                <div className="w-full max-w-md bg-white/80 backdrop-blur-sm rounded-lg p-6 animate-pulse">
-                  <div className="h-6 bg-gray-200 rounded mb-4"></div>
-                  <div className="space-y-3">
-                    <div className="h-4 bg-gray-200 rounded"></div>
-                    <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                  </div>
-                </div>
-              }>
-                <Cart />
-              </Suspense>
+              <Cart />
             </div>
           </div>
         </div>
