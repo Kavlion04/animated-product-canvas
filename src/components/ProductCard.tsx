@@ -1,10 +1,11 @@
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Star, ShoppingCart } from 'lucide-react';
 import { Product } from '@/hooks/useProducts';
+import { useCart } from '@/contexts/CartContext';
 
 interface ProductCardProps {
   product: Product;
@@ -14,6 +15,16 @@ interface ProductCardProps {
 const ProductCard = ({ product, index }: ProductCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = useCallback(() => {
+    addToCart(product);
+  }, [addToCart, product]);
+
+  const handleQuickAdd = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    addToCart(product);
+  }, [addToCart, product]);
 
   return (
     <Card 
@@ -60,6 +71,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
           className={`absolute top-3 right-3 transition-all duration-300 ${
             isHovered ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
           }`}
+          onClick={handleQuickAdd}
         >
           <ShoppingCart className="h-4 w-4" />
         </Button>
@@ -97,6 +109,7 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
         <Button 
           className="transition-all duration-300 hover:scale-105"
           variant="outline"
+          onClick={handleAddToCart}
         >
           Add to Cart
         </Button>
