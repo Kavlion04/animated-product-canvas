@@ -2,6 +2,7 @@
 import { useProducts } from '@/hooks/useProducts';
 import ProductGrid from '@/components/ProductGrid';
 import ProductSkeletonGrid from '@/components/ProductSkeleton';
+import Dashboard from '@/components/Dashboard';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -19,16 +20,19 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col">
       <Header />
       
-      <main className="container mx-auto px-4 py-8 flex-1">
+      <main className="container mx-auto px-4 py-8 flex-1 space-y-16">
         {/* Hero Section */}
         <div className="text-center py-12 animate-fade-in">
-          <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-            Discover Amazing Products
-          </h2>
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+            Welcome to StoreCraft
+          </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Explore our curated collection of premium products with real-time updates and seamless shopping experience.
+            Your one-stop destination for premium products with seamless shopping experience.
           </p>
         </div>
+
+        {/* Dashboard Section */}
+        <Dashboard />
 
         {/* Products Section */}
         <div className="space-y-8">

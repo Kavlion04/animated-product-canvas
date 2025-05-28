@@ -3,6 +3,8 @@ import React, { Suspense, lazy, useMemo } from 'react';
 import { useUsers } from '@/hooks/useUsers';
 import UserSkeletonGrid from '@/components/UserSkeleton';
 import Cart from '@/components/Cart';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { RefreshCw, AlertTriangle, Users as UsersIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,8 +24,10 @@ const Users = () => {
   console.log('Users error:', error);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
-      <main className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 flex flex-col">
+      <Header />
+      
+      <main className="container mx-auto px-4 py-8 flex-1">
         {/* Hero Section */}
         <div className="text-center py-12 animate-fade-in">
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
@@ -98,6 +102,8 @@ const Users = () => {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 };

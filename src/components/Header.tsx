@@ -1,5 +1,5 @@
 
-import { ShoppingBag, Search, Users } from 'lucide-react';
+import { ShoppingBag, Search, Users, Home, Package } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -21,22 +21,34 @@ const Header = () => {
             </h1>
           </Link>
           
-          {/* Search - Hidden on mobile */}
-          <div className="hidden md:flex items-center space-x-4 flex-1 max-w-md mx-8">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <Input 
-                placeholder="Search products..." 
-                className="pl-10 bg-white/50"
-              />
-            </div>
-          </div>
-          
           <div className="flex items-center space-x-2">
+            <Link to="/">
+              <Button 
+                variant={location.pathname === '/' ? 'default' : 'ghost'} 
+                size="sm"
+                className="font-bold"
+              >
+                <Home className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Home</span>
+              </Button>
+            </Link>
+
+            <Link to="/">
+              <Button 
+                variant={location.pathname === '/' ? 'default' : 'ghost'} 
+                size="sm"
+                className="font-bold"
+              >
+                <Package className="h-4 w-4 mr-2" />
+                <span className="hidden sm:inline">Products</span>
+              </Button>
+            </Link>
+            
             <Link to="/users">
               <Button 
                 variant={location.pathname === '/users' ? 'default' : 'ghost'} 
                 size="sm"
+                className="font-bold"
               >
                 <Users className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Users</span>
@@ -47,7 +59,7 @@ const Header = () => {
               <Button 
                 variant={location.pathname === '/cart' ? 'default' : 'outline'} 
                 size="sm" 
-                className="relative"
+                className="relative font-bold"
               >
                 <ShoppingBag className="h-4 w-4 mr-2" />
                 <span className="hidden sm:inline">Cart</span>
